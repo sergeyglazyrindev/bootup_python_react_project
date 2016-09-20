@@ -1,0 +1,9 @@
+.vagrant
+metaneeds.log
+uwsgi-reload
+deployment/vagrant/ansible/playbooks/*.retry
+__pycache__
+.venv
+uwsgi.pid
+.#*
+local_settings.py
