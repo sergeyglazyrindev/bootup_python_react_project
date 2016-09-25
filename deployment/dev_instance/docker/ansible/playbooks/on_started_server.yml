@@ -1,0 +1,7 @@
+---
+- name: Setup user
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    - include: start_app.yml

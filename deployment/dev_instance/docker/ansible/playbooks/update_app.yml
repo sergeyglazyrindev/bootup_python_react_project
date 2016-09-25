@@ -1,0 +1,16 @@
+---
+- name: Update app
+  shell: /bootstrap/update_app.sh
+  args:
+    executable: /bin/bash
+  become: True
+  become_method: sudo
+  become_user: project
+
+
+
+
+
+
+
+

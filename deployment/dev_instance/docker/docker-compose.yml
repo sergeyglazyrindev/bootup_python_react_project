@@ -1,0 +1,29 @@
+db:
+  image: postgres:9.5
+  container_name: db
+  volumes:
+    - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+  environment:
+    - POSTGRES_PASSWORD=123456
+
+memcache:
+  image: memcached
+  container_name: memcache
+
+frontend:
+  build: .
+  volumes:
+    - ./entrypoint.sh:/entrypoint.sh
+    - /code/:/code/
+    - ./bootstrap/:/bootstrap/
+  container_name: frontend
+  ports:
+    - "80:80"
+    - "5454:5454"
+  expose:
+    - "80"
+    - "5454"
+  links:
+    - db
+    - memcache
+                          

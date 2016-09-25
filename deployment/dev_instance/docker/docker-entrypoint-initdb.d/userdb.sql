@@ -1,0 +1,4 @@
+CREATE USER project WITH password '123456';
+CREATE DATABASE project;
+GRANT ALL PRIVILEGES ON DATABASE project TO project;
+ALTER USER project CREATEDB;

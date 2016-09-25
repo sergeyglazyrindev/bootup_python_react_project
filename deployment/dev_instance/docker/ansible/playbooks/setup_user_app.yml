@@ -1,0 +1,36 @@
+---
+- name: Setup user
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    - include: variables.yml
+
+    - name: Install virtualenvwrapper
+      pip: name=virtualenvwrapper
+
+    - name: Adding user for app
+      user: name=project group={{ gid.stdout }} uid={{ uid.stdout }} shell=/bin/bash
+    # - name: Set gid and uid on /code/ folder in machine
+    #   file: group={{ gid.stdout }} owner=project path=/code/ recurse=yes state=directory
+    # - name: Set gid and uid on /bootstrap/ folder in machine
+    #   file: group={{ gid.stdout }} owner=project path=/bootstrap/ recurse=yes state=directory
+
+    - name: Add to bashrc virtualenvwrapper.sh
+      shell: echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+      args:
+        executable: /bin/bash
+      become: True
+      become_method: sudo
+      become_user: project
+
+    - name: Bootstrap user account
+      shell: /bootstrap/bootstrap_user.sh
+      args:
+        executable: /bin/bash
+      become: True
+      become_method: sudo
+      become_user: project
+
+    - include: update_app.yml
+    - include: start_app.yml

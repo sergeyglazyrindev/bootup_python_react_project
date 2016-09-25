@@ -7,3 +7,7 @@ __pycache__
 uwsgi.pid
 .#*
 local_settings.py
+db.sqlite3
+uwsgi-reload
+uwsgi.pid
+project.log

@@ -1,0 +1,10 @@
+css_dir = "build/css"
+sass_dir = "src/sass"
+images_dir = "build/img"
+javascripts_dir = "src/js/client"
+http_path = "/"
+relative_assets = true
+sourcemap = false
+line_comments = false
+output_style = :compressed
+preferred_syntax = :scss

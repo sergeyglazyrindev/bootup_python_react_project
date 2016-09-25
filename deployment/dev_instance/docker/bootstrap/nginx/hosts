@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    server_name buyingsimplified.com;
+    root /code/codebase/;
+
+    location ~* ^/static/(.+)$ {
+         try_files /static/$1 /project/static/build/$1 =404;
+    }
+
+    location / {
+        uwsgi_pass 127.0.0.1:3038;
+        include uwsgi_params;
+    }
+    
+}

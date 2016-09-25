@@ -1,0 +1,8 @@
+---
+- name: Get userid currently active on linux host
+  local_action: command id -u
+  register: uid
+
+- name: Get gid currently active on linux host
+  local_action: command id -g
+  register: gid

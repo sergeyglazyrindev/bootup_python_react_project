@@ -1,0 +1,61 @@
+---
+- name: Trick out Debian server
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    - name: Install desired packages
+      apt: >
+        package={{ item }}
+        state=present
+        update_cache=yes
+      with_items:
+        - debconf-utils
+        - apt-utils
+        - wget
+        - curl
+        - libcurl3
+    - name: Prepare for node installation
+      shell: curl -sL https://deb.nodesource.com/setup_6.x | bash -
+      args:
+        executable: /bin/bash
+    - name: Install desired packages
+      apt: >
+        package={{ item }}
+        state=present
+        update_cache=yes
+      with_items:
+        - nginx
+        - python-minimal
+        - python-pip
+        - git
+        - nano
+        - vim
+        - python-pip
+        - python-dev
+        - sudo
+        - inotify-tools
+        - libxml2-dev
+        - libxslt1-dev
+        - curl
+        - ruby
+        - ruby-dev
+        - postgresql-client
+        - libpq-dev
+        - libncurses5-dev
+        - nodejs
+        - libjpeg-dev
+        - zlib1g-dev
+        - libpng12-dev
+        - python3
+        - python3-dev
+    - name: Install gems
+      shell: gem install sass multi_json compass-import-once chunky_png rb-fsevent rb-inotify ffi autoprefixer-rails execjs compass-core compass bootstrap-sass
+      args:
+        executable: /bin/bash
+    - name: Make symbolic link to nginx hosts
+      file: src=/bootstrap/nginx/hosts path=/etc/nginx/sites-enabled/hosts state=link
+    - name: Update nginx uwsgi_params
+      shell: echo "uwsgi_param SCRIPT_NAME '';" >> /etc/nginx/uwsgi_params
+      args:
+        executable: /bin/bash

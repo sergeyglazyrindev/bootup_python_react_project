@@ -1,0 +1,17 @@
+Django==1.9.7
+uWSGI==2.0.13.1
+psycopg2==2.6.1
+-e git://github.com/sergeyglazyrindev/redissimplified.git#egg=redis-beautified-ext
+django-rest-assured==0.2.0
+djangorestframework==3.3.3
+Markdown==2.6.6
+django-filter==0.13.0
+factory-boy==2.7.0
+django-choices==1.4.3
+Pillow==3.3.0
+-e git://github.com/sergeyglazyrindev/imagestorage.git#egg=imagestoragesimplified
+python3-memcached==1.51
+celery==3.1.18
+-e git://github.com/sergeyglazyrindev/django-celery.git#egg=django-celery
+python-dateutil==2.5.3
+react==3.0.1
